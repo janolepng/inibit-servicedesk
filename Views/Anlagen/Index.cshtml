@@ -1,0 +1,37 @@
+@model IEnumerable<InibitServiceDesk.Models.Anlage>
+
+@{
+    ViewBag.Title = "Anlagen";
+}
+
+<h1 class="h2">Anlagen</h1>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Bezeichnung</th>
+                <th scope="col">Kunde</th>
+                <th scope="col">Standort</th>
+                <th scope="col">Kritikalität</th>
+                <th scope="col"><span class="visually-hidden">Aktionen</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var anlage in Model)
+            {
+                <tr>
+                    <td>@anlage.Bezeichnung</td>
+                    <td>@anlage.Kunde.Name</td>
+                    <td>@anlage.Standort</td>
+                    <td>@anlage.Kritikalitaet</td>
+                    <td>
+                        @Html.ActionLink("Tickets", "Index", "Tickets",
+                                 new { kundeId = anlage.KundeId },
+                                 new { @class = "btn btn-outline-secondary btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
